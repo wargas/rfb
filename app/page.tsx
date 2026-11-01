@@ -24,7 +24,7 @@ export default function Home() {
       <div className="font-sans container mt-4 mx-auto">
         <Card>
           <CardHeader>
-            <div className={cn({ "grid": showMenu, "hidden": !showMenu }, "transition-all grid-cols-2 lg:grid-cols-3 gap-4")}>
+            <div className={cn({ "grid": showMenu, "hidden": !showMenu }, "transition-all grid-cols-2 lg:grid-cols-5 gap-4")}>
               <div className="col-span-1">
                 <Label className="line-clamp-1 flex justify-between" title="Classe e Padrão" htmlFor="">Classe / Padrão</Label>
                 <Select value={params.nivel} onValueChange={(v: any) => changeValue({ nivel: v })}>
@@ -56,6 +56,25 @@ export default function Home() {
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+              <div className="col-span-1">
+                <Label className="line-clamp-1 flex justify-between" title="Adicional de Insalubridade" htmlFor="">Adicional de Insalubridade</Label>
+                <Select value={params.insalubridade} onValueChange={(v: any) => changeValue({ insalubridade: v })}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Adicional de Insalubridade" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nao">Não recebe</SelectItem>
+                    <SelectItem value="sim">Recebe (10%)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="col-span-1">
+                <Label className="line-clamp-1 flex justify-between" title="Dias trabalhados em região de fronteira no mês" htmlFor="">
+                  Dias de Fronteira
+                  {params.diasFronteira > 0 && <span className="" onClick={() => changeValue({ diasFronteira: 0 })}>limpar</span>}
+                </Label>
+                <Input min={0} type="number" value={params.diasFronteira.toString()} onChange={ev => changeValue({ diasFronteira: parseInt(ev.target.value || '0') })} />
               </div>
               <div className="col-span-1">
                 <Label className="line-clamp-1 flex justify-between" title="Dependentes IR" htmlFor="">

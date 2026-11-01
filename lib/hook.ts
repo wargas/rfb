@@ -18,6 +18,8 @@ export function useHook() {
 
     const [params, setParams] = useState({
         faixa_bep: '100',
+        insalubridade: 'nao',
+        diasFronteira: 0,
         dependentesIR: 0,
         nivel: 'SEGUNDA-I',
         complementar: 8.5,
@@ -56,6 +58,22 @@ export function useHook() {
                 previdencia: false,
                 teto: true,
                 value: (config.bepIntegral * config.faixas_bep[faixa_bep].percentual) * quocienteDiasTrabalhados
+            },
+            {
+                id: 'insalubridade',
+                name: 'adicional de insalubridade',
+                ir: true,
+                previdencia: false,
+                teto: true,
+                value: params.insalubridade == 'sim' ? (vencimento * config.percentualInsalubridade) * quocienteDiasTrabalhados : 0
+            },
+            {
+                id: 'fronteira',
+                name: 'adicional de fronteira',
+                ir: false,
+                previdencia: false,
+                teto: false,
+                value: config.valorDiaFronteira * params.diasFronteira
             },
             {
                 id: 'auxilio_alimentacao',

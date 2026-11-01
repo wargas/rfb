@@ -3,6 +3,8 @@ export const config = {
   tetoRemuneratorio: 46366.19,
   bepIntegral: 11500,
   auxilioAlimentacao: 1192,
+  percentualInsalubridade: 0.10,
+  valorDiaFronteira: 91,
   "tabela": {
     "ESPECIAL-III": 32504.91,
     "ESPECIAL-II": 31601.86,
